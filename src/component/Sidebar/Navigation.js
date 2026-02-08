@@ -32,9 +32,9 @@ const Navigation = ({ onOpen, permissions }) => {
 					))
 			)}
 			<li>
-				<a href="#" onClick={logoutHandler}>
+				<button type="button" onClick={logoutHandler} className="logout-btn">
 					<FaSignOutAlt /> <span>Log Out</span>
-				</a>
+				</button>
 			</li>
 		</ul>
 	);

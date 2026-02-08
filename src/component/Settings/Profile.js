@@ -23,7 +23,8 @@ const Profile = () => {
 			setEmail(user_details.email);
 			setMobile(user_details.mobile);
 		}
-	}, []);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [user_details]);
 
 	const getInitials = (string) => {
 		let names = string.split(" "),

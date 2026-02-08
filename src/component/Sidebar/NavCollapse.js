@@ -18,12 +18,13 @@ const NavCollapse = ({ content, onOpen, permissions }) => {
 		if (location.pathname.split("/")[2] === content.name) {
 			setOpen(true);
 		}
-	}, [open]);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [location.pathname, content.name]);
 
 	return (
 		<>
 			<li className="dropdown">
-				<a href="#" onClick={toggleDropdown}>
+				<button type="button" onClick={toggleDropdown} className="dropdown-toggle-btn">
 					{content.name === "accounts" ? (
 						<FiUsers />
 					) : content.name === "basic" ? (

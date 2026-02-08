@@ -2,15 +2,13 @@ import React, { useEffect, useState } from "react";
 import Loader from "../../component/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import {
-	listRequests,
-	listRoles,
-	listUsers,
+	listRequests
 } from "../../redux/users/userSlice";
-import { FiEye } from "react-icons/fi";
-import ModalComponent from "../../component/ModalComponent";
-import { displayError } from "../../redux/error";
-import userService from "../../redux/users/userService";
-import { toast } from "react-hot-toast";
+// import { FiEye } from "react-icons/fi";
+// import ModalComponent from "../../component/ModalComponent";
+// import { displayError } from "../../redux/error";
+// import userService from "../../redux/users/userService";
+// import { toast } from "react-hot-toast";
 import Pagination from "../../component/Pagination";
 import { useLocation } from "react-router-dom";
 

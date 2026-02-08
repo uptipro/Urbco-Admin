@@ -3,8 +3,8 @@ import Sidebar from "../component/Sidebar";
 import OutsideClick from "../component/OutsideClick";
 import Header from "../component/Header";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import Timeout from "../component/Timeout";
-import { useDispatch, useSelector } from "react-redux";
+// import Timeout from "../component/Timeout";
+import { useSelector } from "react-redux";
 
 const Dashboard = () => {
 	const [open, setOpen] = useState(false);
@@ -13,7 +13,7 @@ const Dashboard = () => {
 
 	const navigate = useNavigate();
 
-	const dispatch = useDispatch();
+
 
 	const { user_details } = useSelector((state) => state.auth);
 
@@ -24,7 +24,8 @@ const Dashboard = () => {
 		if (!user_details) {
 			navigate("/");
 		}
-	}, [user_details]);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [user_details, navigate]);
 
 	return (
 		<>

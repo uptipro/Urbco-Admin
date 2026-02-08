@@ -1,6 +1,6 @@
 import axios from "axios";
 import { url } from "../config";
-import { authHeader, headers } from "../headers";
+import { authHeader } from "../headers";
 
 const listUsers = async (token, status, page) => {
 	const response = await axios.get(

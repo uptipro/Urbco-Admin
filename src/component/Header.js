@@ -1,5 +1,5 @@
 import React from "react";
-import { BsBellFill } from "react-icons/bs";
+// import { BsBellFill } from "react-icons/bs";
 import User from "../assets/user.png";
 import Logo from "../assets/logo.svg";
 import { FiLogOut, FiMenu, FiUser } from "react-icons/fi";

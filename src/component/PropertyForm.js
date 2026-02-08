@@ -222,8 +222,8 @@ const PropertyForm = ({ propertyDetails }) => {
 
 	const addFeature = () => {
 		if (selectedFeature) {
-			let find = features.find((f) => f.feature == selectedFeature);
-			let getName = list.find((l) => l._id == selectedFeature);
+			let find = features.find((f) => f.feature === selectedFeature);
+			let getName = list.find((l) => l._id === selectedFeature);
 
 			if (!find) {
 				setFeatures((f) => [

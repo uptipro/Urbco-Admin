@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getInvestments } from "../../../redux/investment/investmentSlice";
 import Loader from "../../../component/Loader";
 import { frontUrl } from "../../../redux/config";
@@ -14,12 +14,12 @@ const Investments = () => {
 	const params = useParams();
 
 	const { user_details } = useSelector((state) => state.auth);
-	const { list, loading, reports } = useSelector(
+	const { list, loading } = useSelector(
 		(state) => state.investments
 	);
 
 	const [plan, setPlan] = useState("");
-	const [page, setPage] = useState(1);
+	// const [page, setPage] = useState(1);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);

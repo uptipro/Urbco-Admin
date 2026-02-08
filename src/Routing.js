@@ -19,7 +19,7 @@ import Transactions from "./pages/App/Transactions/Transactions";
 import InvestorInfo from "./pages/App/Investors/InvestorInfo";
 import InvestmentsOfInvestor from "./pages/App/Investors/Investments";
 import CreateInvestment from "./pages/App/Investments/CreateInvestment";
-import NotFound from "./pages/App/NotFound";
+// import NotFound from "./pages/App/NotFound";
 import Requests from "./pages/App/Requests";
 
 const Routing = () => {

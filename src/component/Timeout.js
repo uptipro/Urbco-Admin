@@ -11,10 +11,8 @@ const Timeout = () => {
 
 	const timeout = 150000;
 	const [remaining, setRemaining] = useState(timeout);
-	const [lastEvent, setLastEvent] = useState("Events Emitted on Leader");
 
-	const handleOnActive = () => setLastEvent("active");
-	const handleOnIdle = () => setLastEvent("idle");
+	// Removed unused lastEvent and handlers
 
 	const { getRemainingTime } = useIdleTimer({
 		timeout,
@@ -37,7 +35,7 @@ const Timeout = () => {
 		if (Math.round(remaining / 1000) === 21) {
 			setOpenModal(true);
 		}
-		if (remaining == 0) {
+		if (remaining === 0) {
 			dispatch(logout());
 		}
 	}, [remaining]);

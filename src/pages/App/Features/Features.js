@@ -13,7 +13,7 @@ const Features = () => {
 	const [openModal, setOpenModal] = useState(false);
 	const [clickedFeature, setClickedFeature] = useState({});
 	const [status, setStatus] = useState("");
-	const [load, setLoad] = useState(false);
+	// const [load, setLoad] = useState(false);
 	const [reset, setReset] = useState(false);
 
 	const headers = [
@@ -27,7 +27,8 @@ const Features = () => {
 
 	useEffect(() => {
 		dispatch(getFeatures({ token: user_details.access_token, status }));
-	}, [reset, status]);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [reset, status, dispatch, user_details.access_token]);
 
 	return (
 		<div className="table-div mt-5">
@@ -100,22 +101,12 @@ const Features = () => {
 											<td>
 												{feature.image ? (
 													<a
-														href={feature.image}
-														target="_blank"
+															href={feature.image}
+															target="_blank" rel="noreferrer"
 													>
-														View
-													</a>
-												) : (
-													<span>--</span>
-												)}
-											</td>
-											<td>{feature.description}</td>
-											<td>{feature.status}</td>
-											<td>
-												{dateFormat(
-													feature.updatedAt,
-													"mmmm dS, yyyy"
-												)}
+															<button type="button" onClick={() => { setClickedFeature(feature); setOpenModal(true); setStatus(feature.status); }}>
+																Edit
+															</button>
 											</td>
 											<td>
 												{user_details.role_id &&
