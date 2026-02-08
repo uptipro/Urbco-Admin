@@ -19,7 +19,7 @@ const Investments = () => {
 	);
 
 	const [plan, setPlan] = useState("");
-	// const [page, setPage] = useState(1);
+	const [page, setPage] = useState(1);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -31,7 +31,7 @@ const Investments = () => {
 				investor: params.id,
 			})
 		);
-	}, [plan, page, params]);
+	}, [plan, page, params, dispatch, user_details.access_token]);
 
 	return (
 		<div>
@@ -83,13 +83,13 @@ const Investments = () => {
 												<td>
 													{l.payment_plan === "opbp"
 														? "Off-plan Purchase Bullet Payment"
-														: l.payment_plan ===
-														  "optp"
-														? "Off-plan Purchase Tranche Payment"
-														: l.payment_plan ===
-														  "csp"
-														? "Construction Stage Purchase"
-														: "Full Payment"}
+													: l.payment_plan ===
+													  "optp"
+													? "Off-plan Purchase Tranche Payment"
+													: l.payment_plan ===
+													  "csp"
+													? "Construction Stage Purchase"
+													: "Full Payment"}
 												</td>
 												<td>
 													₦
@@ -122,6 +122,23 @@ const Investments = () => {
 										))}
 									</tbody>
 								</table>
+
+								{/* Pagination Controls */}
+								<div style={{ display: "flex", justifyContent: "center", marginTop: 16 }}>
+									<button
+										disabled={page === 1}
+										onClick={() => setPage(page - 1)}
+									>
+										Previous
+									</button>
+									<span style={{ margin: "0 12px" }}>Page {page}</span>
+									<button
+										disabled={list && list.investments && list.investments.length < 10}
+										onClick={() => setPage(page + 1)}
+									>
+										Next
+									</button>
+								</div>
 							</>
 						)
 					)}

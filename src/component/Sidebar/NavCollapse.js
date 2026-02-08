@@ -36,7 +36,7 @@ const NavCollapse = ({ content, onOpen, permissions }) => {
 					<span className="icon">
 						{open ? <FaAngleUp /> : <FaAngleDown />}
 					</span>
-				</a>
+				</button>
 				{open && (
 					<ul className="side-dropdown">
 						{content.children.map((l) =>

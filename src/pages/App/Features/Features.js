@@ -107,6 +107,9 @@ const Features = () => {
 															<button type="button" onClick={() => { setClickedFeature(feature); setOpenModal(true); setStatus(feature.status); }}>
 																Edit
 															</button>
+															</a> ) : (
+													"None"
+												)}
 											</td>
 											<td>
 												{user_details.role_id &&
