@@ -145,7 +145,7 @@ const Features = () => {
 				)}
 			</div>
 			<ModalComponent
-				open={openModal || load}
+				open={openModal}
 				toggle={() => setOpenModal(!openModal)}
 				title={clickedFeature._id ? "Edit Feature" : "Create Feature"}
 			>
