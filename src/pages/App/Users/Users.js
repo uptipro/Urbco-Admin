@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Loader from "../../../component/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { listRoles, listUsers } from "../../../redux/users/userSlice";
-import { FiEye } from "react-icons/fi";
+// Removed unused FiEye import
 import ModalComponent from "../../../component/ModalComponent";
 import { displayError } from "../../../redux/error";
 import userService from "../../../redux/users/userService";
@@ -40,7 +40,7 @@ const Users = () => {
 
 	useEffect(() => {
 		dispatch(listRoles({ token: user_details.access_token }));
-	}, []);
+	}, [dispatch, user_details.access_token]);
 
 	useEffect(() => {
 		dispatch(
@@ -50,7 +50,7 @@ const Users = () => {
 				page: pageNumber,
 			})
 		);
-	}, [status, reset, pageNumber]);
+	}, [status, reset, pageNumber, dispatch, user_details.access_token]);
 
 	const actionHandler = async () => {
 		try {
@@ -69,17 +69,17 @@ const Users = () => {
 				setReset(!reset);
 				toast.success("Status has been changed successfully", {
 					position: "top-right",
-				});
-			}
-		} catch (err) {
-			displayError(err, true);
-		}
-	};
-
-	return (
-		<div className="table-div mt-5">
-			<div className="head">
-				<div></div>
+				<button
+					type="button"
+					className="link-button"
+					onClick={() => {
+						setClickedUser(user);
+						setModalType("role");
+						setOpenModal(true);
+					}}
+				>
+					Change
+				</button>
 				{user_details.role_id &&
 					user_details.role_id.permissions.includes(
 						"create-user"
@@ -124,17 +124,17 @@ const Users = () => {
 						<>
 							<table className="table table-bordered">
 								<thead>
-									<tr>
-										<th>Full Name</th>
-										<th>Email</th>
-										<th>Mobile</th>
-										<th>Role</th>
-										<th>Verified Email?</th>
-										<th>Status</th>
-										<th>Action</th>
-									</tr>
-								</thead>
-								<tbody>
+									<button
+										type="button"
+										className="link-button"
+										onClick={() => {
+											setClickedUser(user);
+											setModalType("action");
+											setOpenModal(true);
+										}}
+									>
+										Action
+									</button>
 									{user_list.users.map((user) => (
 										<tr key={user._id}>
 											<td className="wide">

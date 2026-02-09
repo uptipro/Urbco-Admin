@@ -23,7 +23,7 @@ const Website = () => {
 
 	useEffect(() => {
 		dispatch(loadSettings());
-	}, []);
+	}, [dispatch]);
 
 	useEffect(() => {
 		if (settings && settings._id) {

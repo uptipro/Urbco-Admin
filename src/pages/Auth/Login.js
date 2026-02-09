@@ -20,7 +20,7 @@ const Login = () => {
 		if (!user_details) {
 			dispatch(logout());
 		}
-	}, []);
+	}, [dispatch, user_details]);
 
 	const loginHandler = () => {
 		if (email && password) {

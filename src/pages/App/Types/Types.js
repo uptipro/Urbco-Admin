@@ -13,7 +13,7 @@ const Types = () => {
 	const [openModal, setOpenModal] = useState(false);
 	const [clickedType, setClickedType] = useState({});
 	const [status, setStatus] = useState("");
-	const [load, setLoad] = useState(false);
+	// Removed unused 'load' and 'setLoad'
 	const [reset, setReset] = useState(false);
 
 	const headers = [
@@ -26,7 +26,7 @@ const Types = () => {
 
 	useEffect(() => {
 		dispatch(getTypes({ token: user_details.access_token, status }));
-	}, [reset, status]);
+	}, [reset, status, dispatch, user_details.access_token]);
 
 	return (
 		<div className="table-div mt-5">
@@ -77,16 +77,16 @@ const Types = () => {
 						<>
 							<table className="table table-bordered">
 								<thead>
-									<tr>
-										<th>Name</th>
-										<th>Status</th>
-										<th>Last Updated</th>
-										<th>Action</th>
-									</tr>
-								</thead>
-								<tbody>
-									{types.map((feature) => (
-										<tr key={feature._id}>
+									<button
+										type="button"
+										className="link-button"
+										onClick={() => {
+											setClickedType(feature);
+											setOpenModal(true);
+										}}
+									>
+										Edit
+									</button>
 											<td
 												style={{
 													textTransform: "capitalize",
