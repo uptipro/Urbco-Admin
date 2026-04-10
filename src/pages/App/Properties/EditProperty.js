@@ -6,7 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../../../component/Loader";
 import { displayError } from "../../../redux/error";
 import { BsFillArrowLeftSquareFill } from "react-icons/bs";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const EditProperty = () => {
   const params = useParams();
