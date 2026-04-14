@@ -21,9 +21,10 @@ const Home = () => {
 
 	return (
 		<div className="analytics">
-			{user_details.role_id &&
-			user_details.role_id.permissions &&
-			user_details.role_id.permissions.includes("dashboard-stats") ? (
+			{user_details.user_type === "admin" ||
+			(user_details.role_id &&
+				user_details.role_id.permissions &&
+				user_details.role_id.permissions.includes("dashboard-stats")) ? (
 				stats && (
 					<div className="move">
 						<div className="row">
