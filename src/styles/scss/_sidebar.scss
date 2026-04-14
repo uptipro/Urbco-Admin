@@ -94,4 +94,53 @@
 			}
 		}
 	}
+
+	.dropdown-toggle-btn {
+		background: none;
+		border: 0;
+		outline: 0;
+		color: #fff;
+		width: 100%;
+		text-align: left;
+		padding-left: 30px;
+		padding-top: 15px;
+		padding-bottom: 15px;
+		text-transform: capitalize;
+		font-size: 0.9rem;
+
+		svg {
+			margin-right: 20px;
+		}
+
+		span {
+			text-transform: capitalize;
+		}
+
+		&:hover {
+			background: rgba(255, 255, 255, 0.15);
+			border-left: 5px solid #ffffff;
+		}
+	}
+
+	.logout-btn {
+		background: none;
+		border: 0;
+		outline: 0;
+		color: rgba(255, 255, 255, 0.7);
+		width: 100%;
+		text-align: left;
+		padding-left: 30px;
+		padding-top: 15px;
+		padding-bottom: 15px;
+		font-size: 0.9rem;
+
+		svg {
+			margin-right: 20px;
+		}
+
+		&:hover {
+			color: #fff;
+			background: rgba(255, 255, 255, 0.15);
+		}
+	}
 }

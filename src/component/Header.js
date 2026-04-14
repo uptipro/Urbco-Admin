@@ -20,7 +20,7 @@ const Header = ({ openMenu, title }) => {
 		dispatch(logout());
 	};
 
-	return user_details && user_details._id ? (
+	return user_details && (user_details._id || user_details.id) ? (
 		<div className="header shadow-sm">
 			<div className="first">
 				<button onClick={openMenu}>

@@ -19,6 +19,7 @@ const Navigation = ({ onOpen, permissions }) => {
 			{menu.map(
 				(m) =>
 					(!m.permission ||
+						permissions === "all" ||
 						(permissions && permissions.includes(m.permission))) &&
 					(m.children ? (
 						<NavCollapse

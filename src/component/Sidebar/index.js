@@ -12,10 +12,16 @@ const Sidebar = ({ open, onOpen }) => {
 				<img src={Logo} alt="Logo" />
 			</div>
 			<div className="menu">
-				{user_details && user_details.role_id && (
+				{user_details && (
 					<Navigation
 						onOpen={onOpen}
-						permissions={user_details.role_id.permissions}
+						permissions={
+							user_details.user_type === "admin"
+								? "all"
+								: user_details.role_id
+								? user_details.role_id.permissions
+								: []
+						}
 					/>
 				)}
 			</div>

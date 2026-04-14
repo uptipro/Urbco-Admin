@@ -41,6 +41,7 @@ const NavCollapse = ({ content, onOpen, permissions }) => {
 					<ul className="side-dropdown">
 						{content.children.map((l) =>
 							!l.permission ||
+							permissions === "all" ||
 							(permissions &&
 								permissions.includes(l.permission)) ? (
 								<li key={l.id}>
