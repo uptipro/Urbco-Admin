@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import PropertyForm from "../../../component/PropertyForm";
 import propertyService from "../../../redux/properties/propertyService";
@@ -18,13 +18,7 @@ const EditProperty = () => {
   const { user_details } = useSelector((state) => state.auth);
   const [propertyDetails, setPropertyDetails] = useState({});
 
-  useEffect(() => {
-    if (params.id) {
-      getDetails();
-    }
-  }, [params]);
-
-  const getDetails = async () => {
+  const getDetails = useCallback(async () => {
     try {
       setLoad(true);
       let res = await propertyService.getPropertyDetails(
@@ -39,7 +33,13 @@ const EditProperty = () => {
       navigate(-1);
       displayError(err, true);
     }
-  };
+  }, [user_details.access_token, params.id, navigate]);
+
+  useEffect(() => {
+    if (params.id) {
+      getDetails();
+    }
+  }, [params.id, getDetails]);
 
   const handleSendToBuyops = async () => {
     try {

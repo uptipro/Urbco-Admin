@@ -78,7 +78,7 @@ const Properties = () => {
     dispatch(
       getFeatures({ token: user_details.access_token, status: "active" }),
     );
-  }, []);
+  }, [dispatch, user_details.access_token]);
 
   useEffect(() => {
     dispatch(
@@ -92,7 +92,7 @@ const Properties = () => {
         feature,
       }),
     );
-  }, [filter, type, status, feature, pageNumber]);
+  }, [filter, type, status, feature, pageNumber, dispatch, maxAmount, minAmount, user_details.access_token]);
 
   const filterAmount = () => {
     setFilter(!filter);
@@ -230,6 +230,7 @@ const Properties = () => {
                         <a
                           href={`${frontUrl}/projects/${property.ref}`}
                           target="_blank"
+                          rel="noreferrer"
                         >
                           <AiFillEye />
                         </a>

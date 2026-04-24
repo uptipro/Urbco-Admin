@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { BsCloudUpload } from "react-icons/bs";
 import { displayError } from "../redux/error";
 import propertyService from "../redux/properties/propertyService";
@@ -84,7 +84,7 @@ const PropertyForm = ({ propertyDetails }) => {
     dispatch(
       getFeatures({ token: user_details.access_token, status: "active" }),
     );
-  }, []);
+  }, [dispatch, user_details.access_token]);
 
   useEffect(() => {
     if (propertyDetails && propertyDetails.id) {
@@ -133,16 +133,16 @@ const PropertyForm = ({ propertyDetails }) => {
     }
   }, [propertyDetails]);
 
-  useEffect(() => {
-    changePrices();
-  }, [totalUnit, fractionPerUnit, costFractions]);
-
-  const changePrices = () => {
+  const changePrices = useCallback(() => {
     let totalPrice = totalUnit * fractionPerUnit * costFractions;
     setTotalPrice(totalPrice);
     setTotalFraction(fractionPerUnit * totalUnit);
     setCostUnit(costFractions * fractionPerUnit);
-  };
+  }, [totalUnit, fractionPerUnit, costFractions]);
+
+  useEffect(() => {
+    changePrices();
+  }, [changePrices]);
 
   const handleFileInputChange = (e) => {
     const file = e.target.files[0];
@@ -513,7 +513,7 @@ const PropertyForm = ({ propertyDetails }) => {
                       <div className="list mt-2">
                         {images.map((img, i) => (
                           <div className="file" key={i + 1}>
-                            <a target="_blank" href="">
+                            <a target="_blank" rel="noreferrer" href={img.url}>
                               <img src={img.url} alt="Uploaded" />
                             </a>
                             <span>{img.for}</span>
