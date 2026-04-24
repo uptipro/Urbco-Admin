@@ -87,11 +87,11 @@ const PropertyForm = ({ propertyDetails }) => {
   }, []);
 
   useEffect(() => {
-    if (propertyDetails && propertyDetails._id) {
+    if (propertyDetails && propertyDetails.id) {
       setRef(propertyDetails.ref);
       setImages(propertyDetails.images);
       setName(propertyDetails.name);
-      setType(propertyDetails.type._id);
+      setType(propertyDetails.type.id);
       setAddress(propertyDetails.address);
       setCity(propertyDetails.city);
       setState(propertyDetails.state);
@@ -102,7 +102,7 @@ const PropertyForm = ({ propertyDetails }) => {
       setFeatures(
         propertyDetails.features.map((f) => {
           return {
-            feature: f.feature._id,
+            feature: f.feature.id,
             value: f.value,
             name: f.feature.name,
           };
@@ -219,7 +219,7 @@ const PropertyForm = ({ propertyDetails }) => {
   const addFeature = () => {
     if (selectedFeature) {
       let find = features.find((f) => f.feature === selectedFeature);
-      let getName = list.find((l) => l._id === selectedFeature);
+      let getName = list.find((l) => l.id === selectedFeature);
 
       if (!find) {
         setFeatures((f) => [
@@ -286,10 +286,10 @@ const PropertyForm = ({ propertyDetails }) => {
       try {
         setLoad(true);
         let res;
-        if (propertyDetails && propertyDetails._id) {
+        if (propertyDetails && propertyDetails.id) {
           res = await propertyService.editProperty(
             user_details.access_token,
-            propertyDetails._id,
+            propertyDetails.id,
             data,
           );
         } else {
@@ -336,7 +336,7 @@ const PropertyForm = ({ propertyDetails }) => {
           setLoad(true);
           let res = await propertyService.editPropertyStatus(
             user_details.access_token,
-            propertyDetails._id,
+            propertyDetails.id,
             data,
           );
           setLoad(false);
@@ -539,7 +539,7 @@ const PropertyForm = ({ propertyDetails }) => {
                       value={ref}
                       onChange={(e) => setRef(e.target.value)}
                       disabled={
-                        propertyDetails && propertyDetails._id ? true : false
+                        propertyDetails && propertyDetails.id ? true : false
                       }
                     />
                     <label>
@@ -559,7 +559,7 @@ const PropertyForm = ({ propertyDetails }) => {
                       <option value={""}>Select One</option>
                       {types &&
                         types.map((ty) => (
-                          <option key={ty._id} value={ty._id}>
+                          <option key={ty.id} value={ty.id}>
                             {ty.name}
                           </option>
                         ))}
@@ -812,7 +812,7 @@ const PropertyForm = ({ propertyDetails }) => {
                           <option value={""}>Select One</option>
                           {list &&
                             list.map((l) => (
-                              <option key={l._id} value={l._id}>
+                              <option key={l.id} value={l.id}>
                                 {l.name}
                               </option>
                             ))}
@@ -1087,7 +1087,7 @@ const PropertyForm = ({ propertyDetails }) => {
                 </div>
                 <div className="mt-4 text-center">
                   <button onClick={submitHandler} className="main-btn">
-                    {propertyDetails && propertyDetails._id ? "Edit" : "Add"}{" "}
+                    {propertyDetails && propertyDetails.id ? "Edit" : "Add"}{" "}
                     Property
                   </button>
                 </div>
