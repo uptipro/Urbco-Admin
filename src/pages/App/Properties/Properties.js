@@ -92,7 +92,17 @@ const Properties = () => {
         feature,
       }),
     );
-  }, [filter, type, status, feature, pageNumber, dispatch, maxAmount, minAmount, user_details.access_token]);
+  }, [
+    filter,
+    type,
+    status,
+    feature,
+    pageNumber,
+    dispatch,
+    maxAmount,
+    minAmount,
+    user_details.access_token,
+  ]);
 
   const filterAmount = () => {
     setFilter(!filter);
