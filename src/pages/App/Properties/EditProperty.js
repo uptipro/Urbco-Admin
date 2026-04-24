@@ -63,50 +63,51 @@ const EditProperty = () => {
         <BsFillArrowLeftSquareFill />
         <span>Back</span>
       </button>
-      {user_details.role_id &&
-        user_details.role_id.permissions.includes("edit-properties") && (
-          <div className="card">
-            <div className="card-header d-flex align-items-center justify-content-between">
-              <h6>Property Details</h6>
-              {propertyDetails._id && (
-                <div className="d-flex align-items-center gap-2">
-                  {propertyDetails.sent_to_buyops ? (
-                    <span
-                      className="badge"
-                      style={{
-                        background: "#d1fae5",
-                        color: "#065f46",
-                        padding: "6px 12px",
-                        borderRadius: "6px",
-                        fontSize: "13px",
-                      }}
-                    >
-                      ✓ Sent to Buyops
-                    </span>
-                  ) : (
-                    <button
-                      className="btn btn-sm btn-primary"
-                      onClick={handleSendToBuyops}
-                      disabled={sending}
-                    >
-                      {sending ? "Sending…" : "Send to Buyops"}
-                    </button>
-                  )}
-                </div>
-              )}
-            </div>
-            {load ? (
-              <div className="card-body pb-5 pt-5">
-                <Loader />
+      {(user_details.user_type === "admin" ||
+        (user_details.role_id &&
+          user_details.role_id.permissions.includes("edit-properties"))) && (
+        <div className="card">
+          <div className="card-header d-flex align-items-center justify-content-between">
+            <h6>Property Details</h6>
+            {propertyDetails._id && (
+              <div className="d-flex align-items-center gap-2">
+                {propertyDetails.sent_to_buyops ? (
+                  <span
+                    className="badge"
+                    style={{
+                      background: "#d1fae5",
+                      color: "#065f46",
+                      padding: "6px 12px",
+                      borderRadius: "6px",
+                      fontSize: "13px",
+                    }}
+                  >
+                    ✓ Sent to Buyops
+                  </span>
+                ) : (
+                  <button
+                    className="btn btn-sm btn-primary"
+                    onClick={handleSendToBuyops}
+                    disabled={sending}
+                  >
+                    {sending ? "Sending…" : "Send to Buyops"}
+                  </button>
+                )}
               </div>
-            ) : (
-              propertyDetails &&
-              propertyDetails._id && (
-                <PropertyForm propertyDetails={propertyDetails} />
-              )
             )}
           </div>
-        )}
+          {load ? (
+            <div className="card-body pb-5 pt-5">
+              <Loader />
+            </div>
+          ) : (
+            propertyDetails &&
+            propertyDetails._id && (
+              <PropertyForm propertyDetails={propertyDetails} />
+            )
+          )}
+        </div>
+      )}
     </div>
   );
 };
