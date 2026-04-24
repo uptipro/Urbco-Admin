@@ -14,7 +14,7 @@ import CurrencyInput from "react-currency-input-field";
 import { Nav, NavItem, NavLink, TabContent, TabPane } from "reactstrap";
 import dateFormat from "dateformat";
 import { toast } from "react-hot-toast";
-import { lagosLGAs } from "../utils/cities";
+import { nigerianStates } from "../utils/cities";
 
 const PropertyForm = ({ propertyDetails }) => {
   const dispatch = useDispatch();
@@ -577,10 +577,17 @@ const PropertyForm = ({ propertyDetails }) => {
                     </label>
                     <select
                       value={state}
-                      onChange={(e) => setState(e.target.value)}
+                      onChange={(e) => {
+                        setState(e.target.value);
+                        setCity("");
+                      }}
                     >
                       <option value={""}>Select One</option>
-                      <option value={"lagos"}>Lagos</option>
+                      {nigerianStates.map((s) => (
+                        <option value={s.name} key={s.id}>
+                          {s.name}
+                        </option>
+                      ))}
                     </select>
                     <label>
                       City <span>*</span>
@@ -591,14 +598,11 @@ const PropertyForm = ({ propertyDetails }) => {
                     >
                       <option value={""}>Select One</option>
                       {state &&
-                        lagosLGAs.map((l) => (
-                          <option
-                            value={l.name}
-                            key={l.id}
-                            style={{
-                              textTransform: "capitalize",
-                            }}
-                          >
+                        (
+                          nigerianStates.find((s) => s.name === state)?.lgas ||
+                          []
+                        ).map((l) => (
+                          <option value={l.name} key={l.id}>
                             {l.name}
                           </option>
                         ))}
