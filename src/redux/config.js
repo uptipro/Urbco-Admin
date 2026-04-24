@@ -1,7 +1,7 @@
 const environment = "production";
 
 const config = {
-  testUrl: "https://urbco-api-production.up.railway.app/api",
+  testUrl: "http://localhost:8080/api",
   liveUrl: "https://urbco-api-production.up.railway.app/api",
 };
 
